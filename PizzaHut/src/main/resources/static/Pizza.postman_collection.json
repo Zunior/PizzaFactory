@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "d66e8d2c-8e42-47b9-8171-4846ce07e01a",
+		"name": "Pizza",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pizza get no auth",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pizzaFactory/pizzas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizzaFactory",
+						"pizzas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pizza get with auth",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyTmFtZSIsImV4cCI6MTY0NDQ5MDAwMn0.KNWP5zdwQKAg3jhrV712sfXe3CvFRoZA5K8vp2LJxoMKYBrs3bxHA9Ao0swFaJqRikoNtuJuXRxdEVOimTa2pA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/pizzaFactory/pizzas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizzaFactory",
+						"pizzas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pizza get by slug with auth",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyTmFtZSIsImV4cCI6MTY0NDQ5MDAwMn0.KNWP5zdwQKAg3jhrV712sfXe3CvFRoZA5K8vp2LJxoMKYBrs3bxHA9Ao0swFaJqRikoNtuJuXRxdEVOimTa2pA"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/pizzaFactory/slug?slug=capricciosa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizzaFactory",
+						"slug"
+					],
+					"query": [
+						{
+							"key": "slug",
+							"value": "capricciosa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pizza get by slug no auth",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic c2FzYToxMjM0NQ==",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/pizzaFactory/slug?slug=capricciosa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizzaFactory",
+						"slug"
+					],
+					"query": [
+						{
+							"key": "slug",
+							"value": "capricciosa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pizza get by name with auth",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyTmFtZSIsImV4cCI6MTY0NDQ5MDAwMn0.KNWP5zdwQKAg3jhrV712sfXe3CvFRoZA5K8vp2LJxoMKYBrs3bxHA9Ao0swFaJqRikoNtuJuXRxdEVOimTa2pA"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/pizzaFactory/searchByName?name=a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizzaFactory",
+						"searchByName"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "a"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pizza delete by slug with auth Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic c2FzYToxMjM0NQ=="
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/pizzaFactory/slug?slug=capricciosa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizzaFactory",
+						"slug"
+					],
+					"query": [
+						{
+							"key": "slug",
+							"value": "capricciosa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pizza post with auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic c2FzYToxMjM0NQ=="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Margarita\",\r\n\"slug\": \"margarita\",\r\n\"size\": 18,\r\n\"price\": 120,\r\n\"date\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pizzaFactory/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizzaFactory",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "same pizza save with auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic c2FzYToxMjM0NQ=="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Margarita\",\r\n\"slug\": \"calzone\",\r\n\"size\": 18,\r\n\"price\": 120,\r\n\"date\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pizzaFactory/save/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizzaFactory",
+						"save",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "same pizza update with auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic c2FzYToxMjM0NQ=="
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Margarita\",\r\n\"slug\": \"calzone\",\r\n\"size\": 18,\r\n\"price\": 120,\r\n\"date\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pizzaFactory/update/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizzaFactory",
+						"update",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"userName\",\r\n    \"password\":\"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/record",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"record"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"userName\",\r\n    \"password\":\"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "secure point",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyTmFtZSIsImV4cCI6MTY0NDQ5MDAwMn0.KNWP5zdwQKAg3jhrV712sfXe3CvFRoZA5K8vp2LJxoMKYBrs3bxHA9Ao0swFaJqRikoNtuJuXRxdEVOimTa2pA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/secure",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"secure"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
