@@ -11,3 +11,7 @@ All required links can be found in application.properties file
 - h2 console
 - swagger
 - jdbc url for db login
+
+Creation of jar file:
+Run As > Maven build > <name>: clean package > confirm
+Location: "target" directory
