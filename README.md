@@ -8,9 +8,9 @@ Features:
 4. Swagger implementation
 
 All required links can be found in application.properties file
-- h2 console
+- h2 console  
+- jdbc url for db login through h2 console
 - swagger
-- jdbc url for db login
 
 Creation of jar file:  
 Run As > Maven build > <name>: clean package > confirm  
