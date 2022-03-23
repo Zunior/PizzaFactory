@@ -70,7 +70,7 @@ public class PizzaServiceImpl implements GenericService<PizzaDto> {
     if (!existingPizza.isPresent()) {
       throw new PizzaNotExistsException();
     }
-    pizzaRepo.updateBySlug(pizzaDto.getName(), pizzaDto.getPrice(), pizzaDto.getSize(), existingPizza.get().getSlug());
+    pizzaRepo.updateBySlug(pizzaDto, existingPizza.get().getSlug());
   }
 
   @Override
