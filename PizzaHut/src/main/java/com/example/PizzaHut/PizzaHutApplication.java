@@ -23,7 +23,7 @@ public class PizzaHutApplication {
     SpringApplication.run(PizzaHutApplication.class, args);
 
     pizzaService.add(new PizzaDto("Capricciosa", "capricciosa", 240, 23, null));
-    pizzaService.add(new PizzaDto("Calzone", "calzone", 280, 23, null));
+    pizzaService.add(new PizzaDto("Calzone", "calzone", 280, 25, null));
   }
 
 }
