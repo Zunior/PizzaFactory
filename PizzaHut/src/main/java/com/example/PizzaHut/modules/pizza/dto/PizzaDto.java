@@ -14,6 +14,10 @@ public class PizzaDto {
   public PizzaDto() {
 
   }
+  
+  public static class Builder {
+	  
+  }
 
   public PizzaDto(String name, String slug, int size, int price, LocalDateTime date) {
     super();
