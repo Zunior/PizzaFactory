@@ -1,6 +1,5 @@
 package com.example.PizzaHut.modules.pizza.service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -58,8 +57,7 @@ public class PizzaServiceImpl implements GenericService<PizzaDto> {
     if (existingPizza.isPresent()) {
       throw new PizzaExistsException();
     }
-
-    pizzaDto.setDate(LocalDateTime.now());
+    
     return convertToDto(pizzaRepo.save(convertToEntity(pizzaDto)));
   }
 
@@ -85,7 +83,7 @@ public class PizzaServiceImpl implements GenericService<PizzaDto> {
   }
 
   private PizzaDto convertToDto(Pizza pizza) {
-    return pizza == null ? null : modelMapper.map(pizza, PizzaDto.class);
+    return pizza == null ? null : PizzaDto.builder(pizza.getSlug()).name(pizza.getName()).size(pizza.getSize()).price(pizza.getPrice()).build();
   }
 
 }

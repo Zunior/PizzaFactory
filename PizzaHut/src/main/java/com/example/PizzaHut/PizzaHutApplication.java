@@ -21,9 +21,9 @@ public class PizzaHutApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(PizzaHutApplication.class, args);
-
-    pizzaService.add(new PizzaDto("Capricciosa", "capricciosa", 240, 23, null));
-    pizzaService.add(new PizzaDto("Calzone", "calzone", 280, 25, null));
+    
+    pizzaService.add(PizzaDto.builder("capricciosa").name("Capricciosa").size(240).price(20).build());
+    pizzaService.add(PizzaDto.builder("calzone").name("Calzone").size(280).price(23).build());
   }
 
 }

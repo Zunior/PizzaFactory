@@ -15,7 +15,6 @@ import javax.validation.constraints.Pattern;
 @Entity
 @Table(name = "PIZZA")
 public class Pizza {
-  private static final long serialVersionUID = 1L;
 
   @Id
   @NotNull

@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.example.PizzaHut.util.SecurityConstants;
 import com.google.common.base.Predicate;
-import static com.google.common.base.Predicates.or;
-import static com.google.common.base.Predicates.not;
+//import static com.google.common.base.Predicates.or;
+//import static com.google.common.base.Predicates.not;
 import static com.google.common.base.Predicates.and;
 import static springfox.documentation.builders.PathSelectors.regex;
 
