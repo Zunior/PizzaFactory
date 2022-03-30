@@ -2,17 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.6.1</version>
 		<relativePath />
 	</parent>
+	
 	<groupId>com.example</groupId>
 	<artifactId>PizzaHut</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>PizzaHut</name>
 	<description>Pizza Hut project for Spring Boot</description>
+	
 	<properties>
 		<java.version>1.8</java.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
@@ -20,7 +23,9 @@
 		<devTools>2.6.1</devTools>
 		<starterTest>2.6.1</starterTest>
 		<securityTest>5.6.0</securityTest>
+		<jsonWebToken.version>0.11.2</jsonWebToken.version>
 	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -110,36 +115,38 @@
 		    <version>2.6.1</version>
 		</dependency> -->
 		
-		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
 		<!-- <dependency>
 		    <groupId>io.jsonwebtoken</groupId>
 		    <artifactId>jjwt</artifactId>
 		    <version>0.9.1</version>
 		</dependency> -->
 		
-		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl -->
 		<dependency>
 		    <groupId>io.jsonwebtoken</groupId>
 		    <artifactId>jjwt-impl</artifactId>
-		    <version>0.11.2</version>
+		    <version>${jsonWebToken.version}</version>
 		    <scope>runtime</scope>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
 		<dependency>
 		    <groupId>io.jsonwebtoken</groupId>
 		    <artifactId>jjwt-api</artifactId>
-		    <version>0.11.2</version>
+		    <version>${jsonWebToken.version}</version>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson -->
 		<dependency>
 		    <groupId>io.jsonwebtoken</groupId>
 		    <artifactId>jjwt-jackson</artifactId>
-		    <version>0.11.2</version>
+		    <version>${jsonWebToken.version}</version>
 		    <scope>runtime</scope>
 		</dependency>
 		
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.22</version>
+		    <scope>provided</scope>
+		</dependency>
 		
 	</dependencies>
 

@@ -1,6 +1,5 @@
 package com.example.PizzaHut.modules.pizza.service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -84,7 +83,7 @@ public class PizzaServiceImpl implements GenericService<PizzaDto> {
   }
 
   private PizzaDto convertToDto(Pizza pizza) {
-    return pizza == null ? null : new PizzaDto.Builder(pizza.getSlug()).name(pizza.getName()).size(pizza.getSize()).price(pizza.getPrice()).build();
+    return pizza == null ? null : PizzaDto.builder(pizza.getSlug()).name(pizza.getName()).size(pizza.getSize()).price(pizza.getPrice()).build();
   }
 
 }
