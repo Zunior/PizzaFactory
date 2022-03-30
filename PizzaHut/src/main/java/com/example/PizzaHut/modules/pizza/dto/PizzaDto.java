@@ -23,7 +23,7 @@ public class PizzaDto {
   
   // put required variable to builder constructor
   public static PizzaDtoBuilder builder(String slug) {
-      return hiddenBuilder().slug(slug);
+      return hiddenBuilder().slug(slug).date(LocalDateTime.now());
   }
   
 //  public static class PizzaDtoBuilder {
