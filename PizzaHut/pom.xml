@@ -17,6 +17,7 @@
 	<description>Pizza Hut project for Spring Boot</description>
 	
 	<properties>
+		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
 		<java.version>1.8</java.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 		<swagger2.version>2.7.0</swagger2.version>
@@ -43,12 +44,6 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-devtools</artifactId>
@@ -96,6 +91,13 @@
 	      <artifactId>mapstruct</artifactId>
 	      <version>${org.mapstruct.version}</version>
 	    </dependency>
+	    
+	    <dependency>
+		    <groupId>org.mapstruct</groupId>
+		    <artifactId>mapstruct-processor</artifactId>
+		    <version>${org.mapstruct.version}</version>
+		    <scope>provided</scope>
+		</dependency>
 	    
 	    <dependency>
 			<groupId>io.springfox</groupId>
@@ -161,6 +163,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.6.4</version>
+				<!-- <groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version> -->
 				<configuration>
 	                <source>1.8</source> <!-- depending on your project -->
 	                <target>1.8</target> <!-- depending on your project -->
@@ -171,13 +177,7 @@
 	                        <artifactId>mapstruct-processor</artifactId>
 	                        <version>${org.mapstruct.version}</version>
 	                    </path>
-	                    <!-- other annotation processors -->
 	                </annotationProcessorPaths>
-	                <compilerArgs>
-		                <compilerArg>
-		                       -Amapstruct.defaultComponentModel=spring
-		                </compilerArg>
-		            </compilerArgs>
             	</configuration>
 			</plugin>
 		</plugins>

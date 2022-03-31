@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.PizzaHut.exception.PizzaExistsException;
 import com.example.PizzaHut.exception.PizzaNotExistsException;
+import com.example.PizzaHut.mapper.PizzaMapper;
 import com.example.PizzaHut.modules.pizza.dto.PizzaDto;
 import com.example.PizzaHut.modules.pizza.model.Pizza;
 import com.example.PizzaHut.modules.pizza.repository.PizzaRepository;
@@ -34,6 +35,7 @@ public class PizzaServiceImpl implements GenericService<PizzaDto> {
   public List<PizzaDto> getAll() {
     List<PizzaDto> pizzas = new ArrayList<PizzaDto>();
     pizzaRepo.findAll().forEach(pizza -> {
+//      pizzas.add((PizzaDto) PizzaMapper.INSTANCE.pizzaToDto(pizza));
       pizzas.add(convertToDto(pizza));
     });
     return pizzas.stream().sorted(Comparator.comparing(PizzaDto::getDate).reversed()).collect(Collectors.toList());
