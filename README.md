@@ -6,6 +6,7 @@ Features:
 2. Spring security implementation
 3. H2 embedded database
 4. Swagger implementation
+5. Lombok with build pattern implementation on main dto object
 
 All required links can be found in application.properties file
 - h2 console  
