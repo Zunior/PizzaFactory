@@ -31,23 +31,12 @@ import io.jsonwebtoken.security.Keys;
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-<<<<<<< HEAD
 	private final AuthenticationManager authenticationManager;
-=======
-  private final AuthenticationManager authenticationManager;
->>>>>>> refs/remotes/origin/Junit
 
-<<<<<<< HEAD
 	@Autowired
 	public AuthenticationFilter(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
 	}
-=======
-  @Autowired
-  public AuthenticationFilter(AuthenticationManager authenticationManager) {
-    this.authenticationManager = authenticationManager;
-  }
->>>>>>> refs/remotes/origin/Junit
 
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)

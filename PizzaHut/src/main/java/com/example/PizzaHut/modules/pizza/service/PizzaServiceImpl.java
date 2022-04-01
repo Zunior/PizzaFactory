@@ -22,22 +22,10 @@ import com.example.PizzaHut.modules.pizza.repository.PizzaRepository;
 @Transactional
 public class PizzaServiceImpl implements GenericService<PizzaDto> {
 
-<<<<<<< HEAD
 	private final PizzaRepository pizzaRepo;
 	private final ModelMapper modelMapper;
 	// @Autowired
 	// private PizzaMapper pizzaMapper;
-=======
-  private final PizzaRepository pizzaRepo;
-  private final ModelMapper modelMapper;
-  //@Autowired
- // private PizzaMapper pizzaMapper;
-  
-  public PizzaServiceImpl(PizzaRepository pizzaRepo, ModelMapper modelMapper) {
-	  this.pizzaRepo = pizzaRepo;
-	  this.modelMapper = modelMapper;
-  }
->>>>>>> refs/remotes/origin/Junit
 
 	@Autowired
 	public PizzaServiceImpl(PizzaRepository pizzaRepo, ModelMapper modelMapper) {
