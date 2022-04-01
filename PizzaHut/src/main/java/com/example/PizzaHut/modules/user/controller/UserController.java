@@ -1,5 +1,6 @@
 package com.example.PizzaHut.modules.user.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,9 +15,10 @@ import com.example.PizzaHut.modules.user.repository.ApplicationUserRepository;
 @RequestMapping("/users")
 public class UserController {
 
-  private ApplicationUserRepository applicationUserRepository;
-  private PasswordEncoder passwordEncoder;
+  private final ApplicationUserRepository applicationUserRepository;
+  private final PasswordEncoder passwordEncoder;
 
+  @Autowired
   public UserController(ApplicationUserRepository applicationUserRepository, BCryptPasswordEncoder passwordEncoder) {
     this.applicationUserRepository = applicationUserRepository;
     this.passwordEncoder = passwordEncoder;
