@@ -12,18 +12,18 @@ import com.example.PizzaHut.modules.pizza.service.GenericService;
 @EnableCaching
 public class PizzaHutApplication {
 
-  @Autowired
-  private static GenericService<PizzaDto> pizzaService;
+	@Autowired
+	private static GenericService<PizzaDto> pizzaService;
 
-  public PizzaHutApplication(GenericService<PizzaDto> pizzaService) {
-    PizzaHutApplication.pizzaService = pizzaService;
-  }
+	public PizzaHutApplication(GenericService<PizzaDto> pizzaService) {
+		PizzaHutApplication.pizzaService = pizzaService;
+	}
 
-  public static void main(String[] args) {
-    SpringApplication.run(PizzaHutApplication.class, args);
-    
-    pizzaService.add(PizzaDto.builder("capricciosa").name("Capricciosa").size(240).price(20).build());
-    pizzaService.add(PizzaDto.builder("calzone").name("Calzone").size(280).price(23).build());
-  }
+	public static void main(String[] args) {
+		SpringApplication.run(PizzaHutApplication.class, args);
+
+		pizzaService.add(PizzaDto.builder("capricciosa").name("Capricciosa").size(240).price(20).build());
+		pizzaService.add(PizzaDto.builder("calzone").name("Calzone").size(280).price(23).build());
+	}
 
 }

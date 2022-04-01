@@ -26,50 +26,54 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @Api(tags = "Clients")
-@RequestMapping({"/pizzaFactory"})
+@RequestMapping({ "/pizzaFactory" })
 public class PizzaController {
 
-  @Autowired
-  private GenericService<PizzaDto> pizzaService;
+	private final GenericService<PizzaDto> pizzaService;
 
-  @ApiOperation(value = "This method is used to get pizzas.")
-  @GetMapping("/pizzas")
-  @ResponseStatus(HttpStatus.OK)
-  List<PizzaDto> findAll() {
-	  
-	  return pizzaService.getAll();
-  }
+	@Autowired
+	public PizzaController(GenericService<PizzaDto> pizzaService) {
+		this.pizzaService = pizzaService;
+	}
 
-  @GetMapping("/{slug}")
-  @ResponseStatus(HttpStatus.OK)
-  PizzaDto load(@RequestParam("slug") String slug) throws Exception {
-	  return pizzaService.get(slug);
-  }
+	@ApiOperation(value = "This method is used to get pizzas.")
+	@GetMapping("/pizzas")
+	@ResponseStatus(HttpStatus.OK)
+	List<PizzaDto> findAll() {
 
-  @GetMapping("/searchByName")
-  @ResponseStatus(HttpStatus.OK)
-  List<PizzaDto> searchByName(@RequestParam("name") String name) {
-	  return pizzaService.searchByName(name);
-  }
+		return pizzaService.getAll();
+	}
 
-  @PostMapping("/save")
-  PizzaDto save(@Valid @RequestBody PizzaDto pizzaDto) throws PizzaExistsException {
-	  return pizzaService.add(pizzaDto);
-  }
+	@GetMapping("/{slug}")
+	@ResponseStatus(HttpStatus.OK)
+	PizzaDto load(@RequestParam("slug") String slug) throws Exception {
+		return pizzaService.get(slug);
+	}
 
-  @PostMapping("/update")
-  void update(@Valid @RequestBody PizzaDto pizzaDto) throws PizzaExistsException {
-	  pizzaService.update(pizzaDto);
-  }
+	@GetMapping("/searchByName")
+	@ResponseStatus(HttpStatus.OK)
+	List<PizzaDto> searchByName(@RequestParam("name") String name) {
+		return pizzaService.searchByName(name);
+	}
 
-  @DeleteMapping("/{slug}")
-  @ResponseStatus(HttpStatus.ACCEPTED)
-  void delete(@RequestParam("slug") String slug) {
-	  try {
-		  pizzaService.delete(slug);
-	  } catch (DataIntegrityViolationException ex) {
-		  throw new PersistenceException("Item can not be deleted", ex);
-	  }
-  }
+	@PostMapping("/save")
+	PizzaDto save(@Valid @RequestBody PizzaDto pizzaDto) throws PizzaExistsException {
+		return pizzaService.add(pizzaDto);
+	}
+
+	@PostMapping("/update")
+	void update(@Valid @RequestBody PizzaDto pizzaDto) throws PizzaExistsException {
+		pizzaService.update(pizzaDto);
+	}
+
+	@DeleteMapping("/{slug}")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	void delete(@RequestParam("slug") String slug) {
+		try {
+			pizzaService.delete(slug);
+		} catch (DataIntegrityViolationException ex) {
+			throw new PersistenceException("Item can not be deleted", ex);
+		}
+	}
 
 }

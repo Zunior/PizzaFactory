@@ -11,10 +11,10 @@ import com.example.PizzaHut.modules.pizza.model.Pizza;
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface PizzaMapper {
 
-  @Mapping(target = "pizzaDto", source = "pizza")
-  PizzaDto toDto(Pizza pizza);
+	@Mapping(target = "pizzaDto", source = "pizza")
+	PizzaDto toDto(Pizza pizza);
 
-  @Mapping(target = "pizza", source = "pizzaDto")
-  Pizza toEntity(PizzaDto pizzaDto);
+	@Mapping(target = "pizza", source = "pizzaDto")
+	Pizza toEntity(PizzaDto pizzaDto);
 
 }

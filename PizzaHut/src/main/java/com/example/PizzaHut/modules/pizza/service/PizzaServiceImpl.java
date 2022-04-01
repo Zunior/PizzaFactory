@@ -22,68 +22,75 @@ import com.example.PizzaHut.modules.pizza.repository.PizzaRepository;
 @Transactional
 public class PizzaServiceImpl implements GenericService<PizzaDto> {
 
-  @Autowired
-  private PizzaRepository pizzaRepo;
-  @Autowired
-  private ModelMapper modelMapper;
-  // @Autowired
-  // private PizzaMapper pizzaMapper;
+	private final PizzaRepository pizzaRepo;
+	private final ModelMapper modelMapper;
+	// @Autowired
+	// private PizzaMapper pizzaMapper;
 
-  @Override
-  @Transactional(readOnly = true)
-  public List<PizzaDto> getAll() {
-    List<PizzaDto> pizzas = new ArrayList<PizzaDto>();
-    pizzaRepo.findAll().forEach(pizza -> {
-      pizzas.add(convertToDto(pizza));
-    });
-    return pizzas.stream().sorted(Comparator.comparing(PizzaDto::getDate).reversed()).collect(Collectors.toList());
-  }
+	@Autowired
+	public PizzaServiceImpl(PizzaRepository pizzaRepo, ModelMapper modelMapper) {
+		this.pizzaRepo = pizzaRepo;
+		this.modelMapper = modelMapper;
+	}
 
-  @Override
-  public PizzaDto get(String slug) {
-    Pizza pizza = pizzaRepo.findBySlug(slug).orElseThrow(() -> new PizzaNotExistsException());
-    return convertToDto(pizza);
-  }
+	@Override
+	@Transactional(readOnly = true)
+	public List<PizzaDto> getAll() {
+		List<PizzaDto> pizzas = new ArrayList<PizzaDto>();
+		pizzaRepo.findAll().forEach(pizza -> {
+			pizzas.add(convertToDto(pizza));
+		});
+		return pizzas.stream().sorted(Comparator.comparing(PizzaDto::getDate).reversed()).collect(Collectors.toList());
+	}
 
-  @Override
-  public List<PizzaDto> searchByName(final String partialName) {
-    return pizzaRepo.searchByName(partialName).stream().map(pizza -> convertToDto(pizza)).collect(Collectors.toList());
-  }
+	@Override
+	public PizzaDto get(String slug) {
+		Pizza pizza = pizzaRepo.findBySlug(slug).orElseThrow(() -> new PizzaNotExistsException());
+		return convertToDto(pizza);
+	}
 
-  @Override
-  @CacheEvict(value = "addPizza", allEntries = true)
-  public PizzaDto add(PizzaDto pizzaDto) {
-    Optional<Pizza> existingPizza = pizzaRepo.findBySlug(pizzaDto.getSlug());
-    if (existingPizza.isPresent()) {
-      throw new PizzaExistsException();
-    }
-    
-    return convertToDto(pizzaRepo.save(convertToEntity(pizzaDto)));
-  }
+	@Override
+	public List<PizzaDto> searchByName(final String partialName) {
+		return pizzaRepo.searchByName(partialName).stream().map(pizza -> convertToDto(pizza))
+				.collect(Collectors.toList());
+	}
 
-  @Override
-  @CacheEvict(value = "updatePizza", allEntries = true)
-  public void update(PizzaDto pizzaDto) {
-    Optional<Pizza> existingPizza = pizzaRepo.findBySlug(pizzaDto.getSlug());
-    if (!existingPizza.isPresent()) {
-      throw new PizzaNotExistsException();
-    }
-    pizzaRepo.updateBySlug(pizzaDto, existingPizza.get().getSlug());
-  }
+	@Override
+	@CacheEvict(value = "addPizza", allEntries = true)
+	public PizzaDto add(PizzaDto pizzaDto) {
+		Optional<Pizza> existingPizza = pizzaRepo.findBySlug(pizzaDto.getSlug());
+		if (existingPizza.isPresent()) {
+			throw new PizzaExistsException();
+		}
 
-  @Override
-  @CacheEvict(value = "deletePizza", allEntries = true)
-  public void delete(String slug) {
-    pizzaRepo.deleteBySlug(slug);
+		return convertToDto(pizzaRepo.save(convertToEntity(pizzaDto)));
+	}
 
-  }
+	@Override
+	@CacheEvict(value = "updatePizza", allEntries = true)
+	public void update(PizzaDto pizzaDto) {
+		Optional<Pizza> existingPizza = pizzaRepo.findBySlug(pizzaDto.getSlug());
+		if (!existingPizza.isPresent()) {
+			throw new PizzaNotExistsException();
+		}
+		pizzaRepo.updateBySlug(pizzaDto, existingPizza.get().getSlug());
+	}
 
-  private Pizza convertToEntity(PizzaDto pizzaDto) {
-    return modelMapper.map(pizzaDto, Pizza.class);
-  }
+	@Override
+	@CacheEvict(value = "deletePizza", allEntries = true)
+	public void delete(String slug) {
+		pizzaRepo.deleteBySlug(slug);
 
-  private PizzaDto convertToDto(Pizza pizza) {
-    return pizza == null ? null : PizzaDto.builder(pizza.getSlug()).name(pizza.getName()).size(pizza.getSize()).price(pizza.getPrice()).build();
-  }
+	}
+
+	private Pizza convertToEntity(PizzaDto pizzaDto) {
+		return modelMapper.map(pizzaDto, Pizza.class);
+	}
+
+	private PizzaDto convertToDto(Pizza pizza) {
+		return pizza == null ? null
+				: PizzaDto.builder(pizza.getSlug()).name(pizza.getName()).size(pizza.getSize()).price(pizza.getPrice())
+						.build();
+	}
 
 }

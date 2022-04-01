@@ -27,44 +27,45 @@ import com.example.PizzaHut.security.filter.AuthorizationFilter;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-  @Autowired
-  private ApplicationUserDetailsServiceImpl userDetailsService;
-  @Autowired
-  private PasswordEncoder passwordEncoder;
+	private final ApplicationUserDetailsServiceImpl userDetailsService;
+	private final PasswordEncoder passwordEncoder;
 
-  // public SecurityConfiguration(ApplicationUserDetailsServiceImpl
-  // userDetailsService, BCryptPasswordEncoder passwordEncoder) {
-  // this.userDetailsService = userDetailsService;
-  // this.passwordEncoder = passwordEncoder;
-  // }
+	@Autowired
+	public SecurityConfiguration(ApplicationUserDetailsServiceImpl userDetailsService,
+			PasswordEncoder passwordEncoder) {
+		this.userDetailsService = userDetailsService;
+		this.passwordEncoder = passwordEncoder;
+	}
 
-  @Bean(BeanIds.AUTHENTICATION_MANAGER)
-  @Override
-  public AuthenticationManager authenticationManagerBean() throws Exception {
-    return super.authenticationManagerBean();
-  }
+	@Bean(BeanIds.AUTHENTICATION_MANAGER)
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 
-  @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
-  }
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+	}
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll().anyRequest().authenticated().and().addFilter(new AuthenticationFilter(authenticationManager())).addFilter(new AuthorizationFilter(authenticationManager())).sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-  }
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+				.anyRequest().authenticated().and().addFilter(new AuthenticationFilter(authenticationManager()))
+				.addFilter(new AuthorizationFilter(authenticationManager())).sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	}
 
-  @Bean
-  CorsConfigurationSource corsConfigurationSource() {
-    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-    return source;
-  }
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+		return source;
+	}
 
-  @Override
-  public void configure(WebSecurity web) throws Exception {
-    web.ignoring().antMatchers("/pizzaFactory/pizzas/**", "/h2-console/**", "/swagger-ui.html/**");
-  }
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/pizzaFactory/pizzas/**", "/h2-console/**", "/swagger-ui.html/**");
+	}
 
 }

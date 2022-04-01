@@ -8,6 +8,6 @@ import com.example.PizzaHut.modules.user.model.ApplicationUser;
 
 public interface ApplicationUserRepository extends JpaRepository<ApplicationUser, Long> {
 
-  Optional<ApplicationUser> findByUsername(String username);
+	Optional<ApplicationUser> findByUsername(String username);
 
 }

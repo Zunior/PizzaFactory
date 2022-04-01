@@ -35,59 +35,47 @@ public class SpringFoxConfig {
 //  public Docket api() {
 //    return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any()).paths(PathSelectors.any()).build();
 //  }
-	
-  @Bean
-  public Docket api() {
-    return new Docket(DocumentationType.SWAGGER_2)
-        .apiInfo(apiInfo())
+
+	@Bean
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
 //        .pathMapping("/")
 //        .apiInfo(ApiInfo.DEFAULT)
-        .securityContexts(Arrays.asList(securityContext()))
-        .securitySchemes(Arrays.asList(apiKey()))
-        .select()
-        .apis(RequestHandlerSelectors.any())
-        .paths(paths2())
+				.securityContexts(Arrays.asList(securityContext())).securitySchemes(Arrays.asList(apiKey())).select()
+				.apis(RequestHandlerSelectors.any()).paths(paths2())
 //        .paths(PathSelectors.any())
-        .build();
-  }
-  
+				.build();
+	}
+
 	private ApiInfo apiInfo() {
-	    return new ApiInfo("My REST API",
-	        "Some custom description of API.",
-	        "1.0",
-	        "Terms of service",
-	        new Contact("Sasa Popovic", "www.example.com", "sasa.popovic.prog@gmail.com"),
-	        "License of API",
-	        "API license URL",
-	        Collections.emptyList());
-	  }
-  
+		return new ApiInfo("My REST API", "Some custom description of API.", "1.0", "Terms of service",
+				new Contact("Sasa Popovic", "www.example.com", "sasa.popovic.prog@gmail.com"), "License of API",
+				"API license URL", Collections.emptyList());
+	}
+
 	private ApiKey apiKey() {
-	    return new ApiKey("JWT", SecurityConstants.HEADER_NAME, "header");
-	  }
+		return new ApiKey("JWT", SecurityConstants.HEADER_NAME, "header");
+	}
 
-    private SecurityContext securityContext() {
-    	return SecurityContext.builder()
-    			.securityReferences(defaultAuth())
-    			.forPaths(PathSelectors.ant("/pizzaFactory/**"))
-    			.build();
-    }
+	private SecurityContext securityContext() {
+		return SecurityContext.builder().securityReferences(defaultAuth())
+				.forPaths(PathSelectors.ant("/pizzaFactory/**")).build();
+	}
 
-    List<SecurityReference> defaultAuth() {
-    	AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-    	AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-    	authorizationScopes[0] = authorizationScope;
-    	return Arrays.asList(new SecurityReference("JWT", authorizationScopes));
-    }
-    
- // Select only a few
-    private Predicate<String> paths2() {
-        return and(
-                (regex("/pizzaFactory/*"))
+	List<SecurityReference> defaultAuth() {
+		AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+		AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+		authorizationScopes[0] = authorizationScope;
+		return Arrays.asList(new SecurityReference("JWT", authorizationScopes));
+	}
+
+	// Select only a few
+	private Predicate<String> paths2() {
+		return and((regex("/pizzaFactory/*"))
 //                ,(regex("/api/*"))
-                );
-    }
-    // Exclude these 
+		);
+	}
+	// Exclude these
 //    private Predicate<String> paths() {
 //        return and(
 //                not(regex("/error.*")),

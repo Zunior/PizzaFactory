@@ -22,38 +22,40 @@ import io.jsonwebtoken.security.Keys;
 
 public class AuthorizationFilter extends BasicAuthenticationFilter {
 
-  public AuthorizationFilter(AuthenticationManager authenticationManager) {
-    super(authenticationManager);
-  }
+	public AuthorizationFilter(AuthenticationManager authenticationManager) {
+		super(authenticationManager);
+	}
 
-  @Override
-  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-    String header = request.getHeader(HEADER_NAME);
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		String header = request.getHeader(HEADER_NAME);
 
-    if (header == null) {
-      chain.doFilter(request, response);
-      return;
-    }
+		if (header == null) {
+			chain.doFilter(request, response);
+			return;
+		}
 
-    UsernamePasswordAuthenticationToken authentication = authenticate(request);
+		UsernamePasswordAuthenticationToken authentication = authenticate(request);
 
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-    chain.doFilter(request, response);
-  }
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		chain.doFilter(request, response);
+	}
 
-  private UsernamePasswordAuthenticationToken authenticate(HttpServletRequest request) {
-    String token = request.getHeader(HEADER_NAME);
-    if (token != null) {
-      Claims user = Jwts.parser().setSigningKey(Keys.hmacShaKeyFor(KEY.getBytes())).parseClaimsJws(token).getBody();
+	private UsernamePasswordAuthenticationToken authenticate(HttpServletRequest request) {
+		String token = request.getHeader(HEADER_NAME);
+		if (token != null) {
+			Claims user = Jwts.parser().setSigningKey(Keys.hmacShaKeyFor(KEY.getBytes())).parseClaimsJws(token)
+					.getBody();
 
-      if (user != null) {
-        return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
-      } else {
-        return null;
-      }
+			if (user != null) {
+				return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+			} else {
+				return null;
+			}
 
-    }
-    return null;
-  }
+		}
+		return null;
+	}
 
 }

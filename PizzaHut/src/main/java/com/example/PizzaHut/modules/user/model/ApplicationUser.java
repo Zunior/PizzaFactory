@@ -12,49 +12,50 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "APP_USER")
 public class ApplicationUser {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "AU_ID", nullable = false)
-  private long id;
-  @NotNull
-  @NotBlank(message = "This field is required")
-  @Column(name = "AU_LOGIN", nullable = false, unique = true)
-  private String username;
-  @Column(name = "AU_PASS")
-  private String password;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "AU_ID", nullable = false)
+	private long id;
+	@NotNull
+	@NotBlank(message = "This field is required")
+	@Column(name = "AU_LOGIN", nullable = false, unique = true)
+	private String username;
+	@Column(name = "AU_PASS")
+	private String password;
 
-  public ApplicationUser() {
-    super();
-  }
+	public ApplicationUser() {
+		super();
+	}
 
-  public ApplicationUser(long id, @NotNull @NotBlank(message = "This field is required") String username, String password) {
-    super();
-    this.id = id;
-    this.username = username;
-    this.password = password;
-  }
+	public ApplicationUser(long id, @NotNull @NotBlank(message = "This field is required") String username,
+			String password) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+	}
 
-  public long getId() {
-    return id;
-  }
+	public long getId() {
+		return id;
+	}
 
-  public void setId(long id) {
-    this.id = id;
-  }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-  public String getUsername() {
-    return username;
-  }
+	public String getUsername() {
+		return username;
+	}
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-  public String getPassword() {
-    return password;
-  }
+	public String getPassword() {
+		return password;
+	}
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }
