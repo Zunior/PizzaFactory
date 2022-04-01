@@ -26,12 +26,13 @@ import com.example.PizzaHut.security.filter.AuthorizationFilter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
+  
 	private final ApplicationUserDetailsServiceImpl userDetailsService;
 	private final PasswordEncoder passwordEncoder;
 
 	@Autowired
-	public SecurityConfiguration(ApplicationUserDetailsServiceImpl userDetailsService,
+	public SecurityConfiguration(
+			ApplicationUserDetailsServiceImpl userDetailsService,
 			PasswordEncoder passwordEncoder) {
 		this.userDetailsService = userDetailsService;
 		this.passwordEncoder = passwordEncoder;

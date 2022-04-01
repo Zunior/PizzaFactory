@@ -21,8 +21,8 @@
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
 		<swagger2.version>2.7.0</swagger2.version>
 		<devTools>2.6.1</devTools>
-		<starterTest>2.6.1</starterTest>
-		<securityTest>5.6.0</securityTest>
+		<starterTest>2.6.5</starterTest>
+		<securityTest>5.6.2</securityTest>
 		<jsonWebToken.version>0.11.2</jsonWebToken.version>
 	</properties>
 	
@@ -43,12 +43,6 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-devtools</artifactId>

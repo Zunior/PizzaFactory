@@ -15,8 +15,8 @@ import com.example.PizzaHut.modules.user.repository.ApplicationUserRepository;
 @RequestMapping("/users")
 public class UserController {
 
-	private ApplicationUserRepository applicationUserRepository;
-	private PasswordEncoder passwordEncoder;
+  private final ApplicationUserRepository applicationUserRepository;
+  private final PasswordEncoder passwordEncoder;
 
 	@Autowired
 	public UserController(ApplicationUserRepository applicationUserRepository, BCryptPasswordEncoder passwordEncoder) {
