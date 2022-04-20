@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -12,6 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(builderMethodName = "hiddenBuilder")
+@EqualsAndHashCode(exclude = {"date"})
 @ToString
 public class PizzaDto {
 
@@ -29,5 +31,7 @@ public class PizzaDto {
 //  public static class PizzaDtoBuilder {
 //      private PizzaDtoBuilder client(String slug) { return this; }
 //  }
+	
+	
 
 }

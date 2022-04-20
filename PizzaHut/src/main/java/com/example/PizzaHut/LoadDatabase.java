@@ -30,5 +30,7 @@ public class LoadDatabase {
 			log.info("Preloading " + pizzaService.add(PizzaDto.builder("calzone").name("Calzone").size(280).price(23).build()));
 		};
 	}
+	
+	
 
 }

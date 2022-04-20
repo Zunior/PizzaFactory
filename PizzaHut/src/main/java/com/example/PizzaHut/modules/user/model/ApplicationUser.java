@@ -27,10 +27,9 @@ public class ApplicationUser {
 		super();
 	}
 
-	public ApplicationUser(long id, @NotNull @NotBlank(message = "This field is required") String username,
+	public ApplicationUser(@NotNull @NotBlank(message = "This field is required") String username,
 			String password) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
 	}

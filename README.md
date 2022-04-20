@@ -26,3 +26,5 @@ Postman steps:
      Test authentication
   
 Get pizzas method can accept call without authentications, others can not.
+
+There are couple of integration and partial mocked unit tests
