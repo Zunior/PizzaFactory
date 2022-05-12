@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.*;
+
+import java.time.LocalDateTime;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,7 @@ public class PizzaServiceImpl implements GenericService<PizzaDto> {
 		pizzaRepo.findAll().forEach(pizza -> {
 			pizzas.add(convertToDto(pizza));
 		});
-		return pizzas.stream().sorted(Comparator.comparing(PizzaDto::getDate).reversed()).collect(Collectors.toList());
+		return pizzas.stream().sorted(Comparator.comparing(PizzaDto::getDate).reversed()).collect(toList());
 	}
 
 	@Override
@@ -52,7 +54,7 @@ public class PizzaServiceImpl implements GenericService<PizzaDto> {
 	@Override
 	public List<PizzaDto> searchByName(final String partialName) {
 		return pizzaRepo.searchByName(partialName).stream().map(pizza -> convertToDto(pizza))
-				.collect(Collectors.toList());
+				.collect(toList());
 	}
 
 	@Override
@@ -62,7 +64,8 @@ public class PizzaServiceImpl implements GenericService<PizzaDto> {
 		if (existingPizza.isPresent()) {
 			throw new PizzaExistsException();
 		}
-
+		// for initial insert
+		pizzaDto.setDate(LocalDateTime.now());
 		return convertToDto(pizzaRepo.save(convertToEntity(pizzaDto)));
 	}
 
@@ -74,6 +77,22 @@ public class PizzaServiceImpl implements GenericService<PizzaDto> {
 			throw new PizzaNotExistsException();
 		}
 		pizzaRepo.updateBySlug(pizzaDto, existingPizza.get().getSlug());
+	}
+	
+	@Override
+	public PizzaDto replace(PizzaDto pizzaDto, String slug) {
+		
+		return pizzaRepo.findBySlug(slug)
+		      .map(pizza -> {
+		    	pizza.setName(pizzaDto.getName());
+		    	pizza.setPrice(pizzaDto.getPrice());
+		    	pizza.setSize(pizzaDto.getSize());
+		    	return convertToDto(pizzaRepo.save(pizza));
+		      })
+		      .orElseGet(() -> {
+		        pizzaDto.setSlug(slug);
+		        return convertToDto(pizzaRepo.save(convertToEntity(pizzaDto)));
+		      });
 	}
 
 	@Override
