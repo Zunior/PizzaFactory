@@ -1,10 +1,10 @@
 package com.example.PizzaHut;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 //import org.junit.Assert;
 //import org.skyscreamer.jsonassert.JSONAssert;
@@ -13,10 +13,7 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
-
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -24,15 +21,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -48,12 +42,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
 
-import com.example.PizzaHut.modules.pizza.controller.PizzaController;
 import com.example.PizzaHut.modules.pizza.dto.PizzaDto;
 import com.example.PizzaHut.modules.pizza.model.Pizza;
 import com.example.PizzaHut.modules.pizza.repository.PizzaRepository;
@@ -70,9 +61,7 @@ public class PizzaContMockTests {
 	Logger logger = LoggerFactory.getLogger(PizzaContMockTests.class);
 	
 	private PasswordEncoder passwordEncoder;
-	private AuthenticationManager authenticationManager;
 	private WebApplicationContext context;
-	private UserDetailsService userDetailsService;
 	private ApplicationUserRepository applicationUserRepository;
     
     @MockBean
@@ -95,16 +84,8 @@ public class PizzaContMockTests {
     	this.passwordEncoder = passwordEncoder;
     }
     @Autowired
-    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
-    	this.authenticationManager = authenticationManager;
-    }
-    @Autowired
     public void setApplicationContext(WebApplicationContext context) {
     	this.context = context;
-    }
-    @Autowired
-    public void setUserDetailsService(UserDetailsService userDetailsService) {
-    	this.userDetailsService = userDetailsService;
     }
     @Autowired
     public void setApplicationUserRepository(ApplicationUserRepository applicationUserRepository) {

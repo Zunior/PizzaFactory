@@ -1,7 +1,7 @@
 package com.example.PizzaHut;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -12,22 +12,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.time.Clock;
 import java.util.Arrays;
 
-import javax.annotation.PostConstruct;
-
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -50,9 +45,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
 
-import com.example.PizzaHut.modules.pizza.controller.PizzaController;
 import com.example.PizzaHut.modules.pizza.dto.PizzaDto;
 import com.example.PizzaHut.modules.pizza.service.PizzaServiceImpl;
 import com.example.PizzaHut.modules.user.model.ApplicationUser;
@@ -69,7 +62,6 @@ public class PizzaContIntegrationTests {
 	
 	private PizzaServiceImpl pizzaService;
 	private PasswordEncoder passwordEncoder;
-	private AuthenticationManager authenticationManager;
 	private WebApplicationContext context;
 	private UserDetailsService userDetailsService;
 	private ApplicationUserRepository applicationUserRepository;
@@ -91,10 +83,6 @@ public class PizzaContIntegrationTests {
     @Autowired
     public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
     	this.passwordEncoder = passwordEncoder;
-    }
-    @Autowired
-    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
-    	this.authenticationManager = authenticationManager;
     }
     @Autowired
     public void setApplicationContext(WebApplicationContext context) {

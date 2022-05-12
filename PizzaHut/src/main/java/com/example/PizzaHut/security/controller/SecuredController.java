@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class SecuredController {
 
 	@GetMapping
-	public ResponseEntity reachSecureEndpoint() {
+	public ResponseEntity<String> reachSecureEndpoint() {
 
-		return new ResponseEntity("If your are reading this you reached a secure endpoint", HttpStatus.OK);
+		return new ResponseEntity<String>("If your are reading this you reached a secure endpoint", HttpStatus.OK);
 	}
 
 }

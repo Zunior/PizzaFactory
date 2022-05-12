@@ -10,7 +10,7 @@ public class PizzaNotExistsException extends RuntimeException {
 		super(ExceptionConstants.PIZZA_NOT_EXIST);
 	}
 
-	public static String getExceptionMessage() {
+	public String getExceptionMessage() {
 		return new PizzaNotExistsException().getMessage();
 	}
 }
