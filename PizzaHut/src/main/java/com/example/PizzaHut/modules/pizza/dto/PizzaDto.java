@@ -1,20 +1,14 @@
 package com.example.PizzaHut.modules.pizza.dto;
 
-import java.time.LocalDateTime;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(builderMethodName = "hiddenBuilder")
 @EqualsAndHashCode(exclude = {"date"})
-@ToString
 public class PizzaDto {
 
 	private String name;

@@ -147,32 +147,48 @@
 		    <version>1.18.22</version>
 		    <scope>provided</scope>
 		</dependency>
-		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
+
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-	                <source>1.8</source> <!-- depending on your project -->
-	                <target>1.8</target> <!-- depending on your project -->
-					<finalName>pizza-1.0-SNAPSHOT</finalName>
-	                <annotationProcessorPaths>
-	                    <path>
-	                        <groupId>org.mapstruct</groupId>
-	                        <artifactId>mapstruct-processor</artifactId>
-	                        <version>${org.mapstruct.version}</version>
-	                    </path>
-	                    <!-- other annotation processors -->
-	                </annotationProcessorPaths>
-	                <compilerArgs>
-		                <compilerArg>
-		                       -Amapstruct.defaultComponentModel=spring
-		                </compilerArg>
-		            </compilerArgs>
-            	</configuration>
+<!--				<configuration>-->
+<!--					<mainClass>com.example.PizzaHut.PizzaHutApplication.Main</mainClass>-->
+<!--				</configuration>-->
+<!--				<configuration>-->
+<!--	                <source>1.8</source> &lt;!&ndash; depending on your project &ndash;&gt;-->
+<!--	                <target>1.8</target> &lt;!&ndash; depending on your project &ndash;&gt;-->
+<!--					<finalName>pizza-1.0-SNAPSHOT</finalName>-->
+<!--	                <annotationProcessorPaths>-->
+<!--	                    <path>-->
+<!--	                        <groupId>org.mapstruct</groupId>-->
+<!--	                        <artifactId>mapstruct-processor</artifactId>-->
+<!--	                        <version>${org.mapstruct.version}</version>-->
+<!--	                    </path>-->
+<!--	                    &lt;!&ndash; other annotation processors &ndash;&gt;-->
+<!--	                </annotationProcessorPaths>-->
+<!--	                <compilerArgs>-->
+<!--		                <compilerArg>-->
+<!--		                       -Amapstruct.defaultComponentModel=spring-->
+<!--		                </compilerArg>-->
+<!--		            </compilerArgs>-->
+<!--            	</configuration>-->
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+
 			</plugin>
 		</plugins>
 	</build>

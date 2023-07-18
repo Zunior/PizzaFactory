@@ -28,8 +28,8 @@ class JsonPathTest {
 		
 		System.out.println(context.read("$.[1]").toString());
 		System.out.println(context.read("$.[0:1]").toString());
-		System.out.println(context.read("$.[?(@.name='Eraser')]").toString());
-		System.out.println(context.read("$.[?(@.quantity=5)]").toString());
+//		System.out.println(context.read("$.[?(@.name='Eraser')]").toString());
+//		System.out.println(context.read("$.[?(@.quantity=5)]").toString());
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.example.PizzaHut;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -11,10 +12,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.time.Clock;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.slf4j.Logger;
@@ -147,7 +150,7 @@ public class PizzaContMockTests {
 	
 //	@Test
 	public void testGetByIdRestTemplate() {
-		HttpEntity<PizzaDto> entity = new HttpEntity<PizzaDto>(null, headers);
+		HttpEntity<PizzaDto> entity = new HttpEntity<>(null, headers);
 		
 //		ResponseEntity<String> response = restTemplate.exchange(
 //		          createURLWithPort("/pizzaFactory/capricciosa"), HttpMethod.GET, entity, String.class);
@@ -161,7 +164,7 @@ public class PizzaContMockTests {
 		
 		// Verify bad request and missing header
 	    assertEquals(400, response.getStatusCodeValue());
-	    assertEquals(true, response.getBody().contains("Missing request header"));
+		assertTrue(Objects.requireNonNull(response.getBody()).contains("Missing request header"));
 	}
 	
 

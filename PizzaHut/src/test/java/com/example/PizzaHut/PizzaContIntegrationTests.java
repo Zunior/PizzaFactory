@@ -11,9 +11,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.time.Clock;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Objects;
 
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -166,11 +169,11 @@ public class PizzaContIntegrationTests {
 		UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication(); 
 //		accessToken = auth.getTokenValue();
 		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 		String userAuth = SecurityContextHolder.getContext().getAuthentication().getCredentials().toString();
 		headers.set("Authorization", "Bearer " + userAuth);
 //	    headers.setBearerAuth(userAuth);
-		HttpEntity<String> entity = new HttpEntity<String>(headers);
+		HttpEntity<String> entity = new HttpEntity<>(headers);
 	    
 		
 		ResponseEntity<PizzaDto> response = restTemplate.exchange(
@@ -182,7 +185,7 @@ public class PizzaContIntegrationTests {
 		
 		String expected = "{\"slug\":\"capricciosa\",\"name\":\"Capricciosa\",\"size\":240,\"price\":20}";
 //		assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-		assertEquals(expected, response.getBody());
+		assertEquals(expected, Objects.requireNonNull(response.getBody()).toString());
 		
 		// Verify bad request and missing header
 	    assertEquals(400, response.getStatusCodeValue());
